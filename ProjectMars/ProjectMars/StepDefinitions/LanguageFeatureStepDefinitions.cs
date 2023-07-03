@@ -86,6 +86,111 @@ namespace MarsProject.StepDefinitions
             
         }
 
+        [When(@"I add language and level already added")]
+        public void WhenIAddLanguageAndLevelAlreadyAdded()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.AddLanguage(driver);
+        }
+
+        [Then(@"Error message Language and level already exists is displayed")]
+        public void ThenErrorMessageLanguageAndLevelAlreadyExistsIsDisplayed()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            string errorMessage = languagesectionobject.GetDuplicateLanguageLevel(driver);
+            string expectedMessage = "This language is already exist in your language list.";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"I add language already added with different level")]
+        public void WhenIAddLanguageAlreadyAddedWithDifferentLevel()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.AddDuplicateLanguage(driver);
+        }
+
+        [Then(@"Duplicated data message is displayed")]
+        public void ThenDuplicatedDataMessageIsDisplayed()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            string errorMessage = languagesectionobject.GetDuplicateLanguage(driver);
+            string expectedMessage = "Duplicated data";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"I add already added language with differnt case")]
+        public void WhenIAddAlreadyAddedLanguageWithDifferntCase()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.AddDifferentCaseLanguage(driver);
+        }
+
+        [Then(@"Language already exixts error message is displayed")]
+        public void ThenLanguageAlreadyExixtsErrorMessageIsDisplayed()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            string errorMessage = languagesectionobject.GetDifferentCaseLanguage(driver);
+            string expectedMessage = "This language is already exist in your language list.";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"I click on cancel icon of added language")]
+        public void WhenIClickOnCancelIconOfAddedLanguage()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.DeleteLanguage(driver);
+        }
+
+        [Then(@"Language record is deleted")]
+        public void ThenLanguageRecordIsDeleted()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            string errorMessage = languagesectionobject.GetDifferentCaseLanguage(driver);
+            string expectedMessage = "English has been deleted from your languages";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"Add Languages I know using keyboard keys")]
+        public void WhenAddLanguagesIKnowUsingKeyboardKeys()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.AddLanguageKeyboard(driver);
+        }
+    
+
+        [Then(@"language is added successfully")]
+        public void ThenLanguageIsAddedSuccessfully()
+        {
+           LanguageSection languagesectionobject = new LanguageSection();
+           string newLanguage = languagesectionobject.GetLanguageKeyboard(driver);
+           //string newLevel = languagesectionobject.GetLevel(driver);
+
+           Assert.AreEqual("German", newLanguage, "Actual Language and expected language do not match");
+        }
+
+        [When(@"I Click on edit icon and update button without making changes")]
+        public void WhenIClikOnEditIconAndUpdateButtonWithoutMakingChanges()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.UpdateLanguageNoChanges(driver);
+        }
+
+        [Then(@"Error message Language and level already added is displayed")]
+        public void ThenErrorMessageLanguageAndLevelAlreadyAddedIsDisplayed()
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            string errorMessage = languagesectionobject.GetUpdateNoChangesLanguage(driver);
+            string expectedMessage = "This language is already added to your language list.";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
 
     }
+
+
 }
