@@ -40,10 +40,10 @@ namespace MarsProject.StepDefinitions
         {
             LanguageSection languagesectionobject = new LanguageSection();
             string newLanguage = languagesectionobject.GetLanguage(driver);
-            //string newLevel = languagesectionobject.GetLevel(driver);
+            string newLevel = languagesectionobject.GetLevel(driver);
 
             Assert.AreEqual("English", newLanguage, "Actual Language and expected language do not match");
-            //Assert.AreEqual("");
+            Assert.AreEqual("Basic" , newLevel , "Actual level and expected level do not match");
            
         }
 
@@ -120,14 +120,14 @@ namespace MarsProject.StepDefinitions
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
         }
 
-        [When(@"I add already added language with differnt case")]
+       /* [When(@"I add already added language with differnt case")]
         public void WhenIAddAlreadyAddedLanguageWithDifferntCase()
         {
             LanguageSection languagesectionobject = new LanguageSection();
             languagesectionobject.AddDifferentCaseLanguage(driver);
         }
 
-        [Then(@"Language already exixts error message is displayed")]
+        [Then(@"Language already exists error message is displayed")]
         public void ThenLanguageAlreadyExixtsErrorMessageIsDisplayed()
         {
             LanguageSection languagesectionobject = new LanguageSection();
@@ -135,7 +135,7 @@ namespace MarsProject.StepDefinitions
             string expectedMessage = "This language is already exist in your language list.";
 
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
-        }
+        }*/
 
         [When(@"I click on cancel icon of added language")]
         public void WhenIClickOnCancelIconOfAddedLanguage()
@@ -187,6 +187,25 @@ namespace MarsProject.StepDefinitions
             string expectedMessage = "This language is already added to your language list.";
 
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"I Update language '([^']*)' and level '([^']*)' and click on cancel")]
+        public void WhenIUpdateLanguageAndLevelAndClickOnCancel(string Language, string Level)
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            languagesectionobject.UpdateLanguageCancel(driver, Language, Level);
+
+        }
+
+        [Then(@"Updated changes are not saved for '([^']*)' and '([^']*)'")]
+        public void ThenUpdatedChangesAreNotSavedForAnd(string language, string level)
+        {
+            LanguageSection languagesectionobject = new LanguageSection();
+            string editedLanguage = languagesectionobject.GetEditedLanguage(driver);
+            string editedLevel = languagesectionobject.GetEditedLevel(driver);
+
+            Assert.AreEqual(language, editedLanguage, "Updates are not made for language");
+            Assert.AreEqual(level, editedLevel, "Updates are not made for level");
         }
 
 

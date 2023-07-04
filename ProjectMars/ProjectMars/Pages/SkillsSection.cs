@@ -1,5 +1,6 @@
 ﻿using MarsProject.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V112.Cast;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MarsProject.Pages
 {
     public class SkillsSection : CommonDriver
     {
-        public void AddSkills(IWebDriver driver, string skill)
+        public void AddSkills(IWebDriver driver, string skill , string level)
         {
             //----------------ADD NEW SKILL --------------------------
             IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
@@ -18,18 +19,31 @@ namespace MarsProject.Pages
 
             IWebElement addSkillTextbox = driver.FindElement(By.Name("name"));
             addSkillTextbox.SendKeys(skill);
+            Thread.Sleep(1000);
 
             IWebElement SkillLevelDropdown = driver.FindElement(By.Name("level"));
             Thread.Sleep(1000);
+            SkillLevelDropdown.SendKeys(level);
+            Thread.Sleep(2000);
 
-            IWebElement beginnerLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[2]"));
-            beginnerLevel.Click();
-
-            IWebElement addButton = driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
+            IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
             addButton.Click();
+            Thread.Sleep(2000);
         }
 
-        public void UpdateSkill(IWebDriver driver, string skill)
+        public string GetSkill(IWebDriver driver)
+        {
+            IWebElement addedSkill = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+            return addedSkill.Text;
+        }
+
+        public string GetLevel(IWebDriver driver)
+        {
+            IWebElement addedLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
+            return addedLevel.Text;
+
+        }
+        public void UpdateSkill(IWebDriver driver, string skill , string level)
         {
             //--------------------------------UPDATE SKILL---------------------------------
 
@@ -46,14 +60,13 @@ namespace MarsProject.Pages
             //Edit Language level
             IWebElement skillLevelDropdown = driver.FindElement(By.Name("level"));
             Thread.Sleep(1000);
-
-            IWebElement intermediateLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td/div/div[2]/select/option[3]"));
-            intermediateLevel.Click();
-            Thread.Sleep(2000);
+            skillLevelDropdown.SendKeys(level);
+            Thread.Sleep(3000);
 
             //Click on Update button
             IWebElement updateButton = driver.FindElement(By.XPath("//input[contains(@type,'button')]"));
             updateButton.Click();
+            Thread.Sleep(4000);
 
         }
         public void DeleteSkill(IWebDriver driver)

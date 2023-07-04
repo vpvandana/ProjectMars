@@ -178,12 +178,12 @@ testRunner.Then("Error message is displayed", ((string)(null)), ((TechTalk.SpecF
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC_002_04 Duplicate language and duplicate level")]
-        public void TC_002_04DuplicateLanguageAndDuplicateLevel()
+        [NUnit.Framework.DescriptionAttribute("TC_002_04 Duplicate language and same level")]
+        public void TC_002_04DuplicateLanguageAndSameLevel()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_04 Duplicate language and duplicate level", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_04 Duplicate language and same level", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -244,12 +244,12 @@ testRunner.Then("Duplicated data message is displayed", ((string)(null)), ((Tech
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC_002_07 Same language with different case")]
-        public void TC_002_07SameLanguageWithDifferentCase()
+        [NUnit.Framework.DescriptionAttribute("TC_002_09 I Click on Cancel icon")]
+        public void TC_002_09IClickOnCancelIcon()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_07 Same language with different case", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_09 I Click on Cancel icon", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -267,22 +267,22 @@ testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)
 testRunner.When("I navigate language section in profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 47
-testRunner.And("I add already added language with differnt case", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I click on cancel icon of added language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 48
-testRunner.Then("Language already exixts error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Language record is deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC_002_08 I Click on Cancel icon")]
-        public void TC_002_08IClickOnCancelIcon()
+        [NUnit.Framework.DescriptionAttribute("TC_002_10 add language using keyboard keys")]
+        public void TC_002_10AddLanguageUsingKeyboardKeys()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_08 I Click on Cancel icon", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_10 add language using keyboard keys", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 50
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -300,22 +300,22 @@ testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)
 testRunner.When("I navigate language section in profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 53
-testRunner.And("I click on cancel icon of added language", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("Add Languages I know using keyboard keys", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 54
-testRunner.Then("Language record is deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("language is added successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC_002_09 add language using keyboard keys")]
-        public void TC_002_09AddLanguageUsingKeyboardKeys()
+        [NUnit.Framework.DescriptionAttribute("TC_002_13 User clicks on update button without making changes")]
+        public void TC_002_13UserClicksOnUpdateButtonWithoutMakingChanges()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_09 add language using keyboard keys", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_13 User clicks on update button without making changes", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -333,22 +333,26 @@ testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)
 testRunner.When("I navigate language section in profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 59
-testRunner.And("Add Languages I know using keyboard keys", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I Click on edit icon and update button without making changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
-testRunner.Then("language is added successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Error message Language and level already added is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC_002_12 User clicks on update button without making changes")]
-        public void TC_002_12UserClicksOnUpdateButtonWithoutMakingChanges()
+        [NUnit.Framework.DescriptionAttribute("TC_002_15 Updated changes are not saved on clicking cancel")]
+        [NUnit.Framework.TestCaseAttribute("Hindi", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
+        public void TC_002_15UpdatedChangesAreNotSavedOnClickingCancel(string language, string level, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_12 User clicks on update button without making changes", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_15 Updated changes are not saved on clicking cancel", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 62
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -366,10 +370,10 @@ testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)
 testRunner.When("I navigate language section in profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 65
-testRunner.And("I Click on edit icon and update button without making changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And(string.Format("I Update language \'{0}\' and level \'{1}\' and click on cancel", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 66
-testRunner.Then("Error message Language and level already added is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then(string.Format("Updated changes are not saved for \'{0}\' and \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

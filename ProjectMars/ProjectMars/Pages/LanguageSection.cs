@@ -1,10 +1,12 @@
 ﻿using MarsProject.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V112.LayerTree;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,8 +28,8 @@ namespace MarsProject.Pages
             IWebElement languageLevelDropdown = driver.FindElement(By.Name("level"));
             Thread.Sleep(1000);
 
-            IWebElement basicLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
-            basicLevel.Click();
+            IWebElement addLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
+            addLevel.Click();
 
             IWebElement addButton = driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
             addButton.Click();
@@ -39,14 +41,12 @@ namespace MarsProject.Pages
             return addedLanguage.Text;
         }
 
-        /*  public string GetLevel(IWebDriver driver)
+        public string GetLevel(IWebDriver driver)
           {
-              IWebElement addedLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
-              //return addedLevel.Text;
-              SelectElement select = new SelectElement(addedLevel);
-              select.SelectByText(addedLevel.Text);
-
-          } */
+              IWebElement addedLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+              return addedLevel.Text;
+         
+          } 
 
         //TC_002_04
         public string GetDuplicateLanguageLevel(IWebDriver driver)
@@ -163,8 +163,8 @@ namespace MarsProject.Pages
             return errormessage;
         }
 
-        public void AddDifferentCaseLanguage(IWebDriver driver)
-        {
+         public void AddDifferentCaseLanguage(IWebDriver driver)
+         {
             //----------------ADD SAME LANGUAGE WITH DIFFERENT LEVEL--------------------------
             IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
             addNewButton.Click();
@@ -183,9 +183,9 @@ namespace MarsProject.Pages
             IWebElement addButton = driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
             addButton.Click();
             Thread.Sleep(2000);
-        }
+         }
 
-        public string GetDifferentCaseLanguage(IWebDriver driver)
+         public string GetDifferentCaseLanguage(IWebDriver driver)
         {
             IWebElement actualerrorMessage = driver.FindElement(By.XPath("//a[@href='#']//ancestor::div/div"));
             string errormessage = actualerrorMessage.Text;
@@ -267,5 +267,29 @@ namespace MarsProject.Pages
             string errormessage = actualerrorMessage.Text;
             return errormessage;
         }
+
+        public void UpdateLanguageCancel(IWebDriver driver , string language , string level)
+        {
+
+            IWebElement editIcon = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i"));
+            editIcon.Click();
+            Thread.Sleep(3000);
+
+            //Edit Language
+            IWebElement addLanguageTextbox = driver.FindElement(By.Name("name"));
+            addLanguageTextbox.Clear();
+            Thread.Sleep(1000);
+            addLanguageTextbox.SendKeys(language);
+
+            //Edit Language level
+            IWebElement editLanguageLevel = driver.FindElement(By.Name("level"));
+            editLanguageLevel.SendKeys(level);
+            Thread.Sleep(1000);
+
+            IWebElement cancelButton = driver.FindElement(By.XPath("//*[@value='Cancel']"));
+            cancelButton.Click();
+            Thread.Sleep(1000);
+        }
+
     }
 }
