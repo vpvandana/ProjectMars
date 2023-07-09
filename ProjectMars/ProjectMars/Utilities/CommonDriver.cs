@@ -6,33 +6,32 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-using MarsProject.Pages;
+using ProjectMars.Pages;
 
-namespace MarsProject.Utilities
+namespace ProjectMars.Utilities
 {
     public class CommonDriver
     {
-        public IWebDriver driver;
-
-        [OneTimeSetUp]
-        public void LoginSteps()
-
-        {
-            //Launch Chrome browser
-            driver = new ChromeDriver();
-
-            //Login page object initialization and defenition
-            LoginPage lp = new LoginPage();
-            lp.LoginSteps(driver);
-        }
-
-        [OneTimeTearDown]
-
-
-    public void LoginStepsTearDown() 
-        {
-            driver.Quit();
+        public static IWebDriver driver;
         
+        public void Initialize()
+
+        {
+            //Lauch Chrome browser
+            driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
+
+            //Login page object initialization and definition
+           // LoginPage loginpage = new LoginPage();
+            //loginpage.LoginSteps(driver);
+
+            
+        }
+        public void close()
+        {
+            driver.Close();
+
         }
     }
 }
+

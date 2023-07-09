@@ -1,4 +1,4 @@
-﻿using MarsProject.Utilities;
+﻿using ProjectMars.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools.V112.Cast;
 using System;
@@ -6,73 +6,164 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Support.UI;
+using System.Reflection.Emit;
 
-namespace MarsProject.Pages
+namespace ProjectMars.Pages
 {
     public class SkillsSection : CommonDriver
     {
-        public void AddSkills(IWebDriver driver, string skill , string level)
+        // private static IWebElement skillsTab => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
+         private static IWebElement addNewButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
+          private static IWebElement addSkillTextbox => driver.FindElement(By.Name("name"));
+          private static IWebElement addButton => driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
+          private static IWebElement skillLevelDropdown => driver.FindElement(By.Name("level"));
+          private static IWebElement skillTextBox => driver.FindElement(By.XPath("//input[@placeholder='Add Skill']"));
+          private static IWebElement updateButton => driver.FindElement(By.XPath("//input[@value='Update']"));
+          private static IWebElement skillsTab => driver.FindElement(By.XPath("//a[text()='Skills']"));
+          private static IWebElement addedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+          private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
+          private static IWebElement editSkillIcon => driver.FindElement(By.CssSelector("#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody > tr > td.right.aligned > span:nth-child(1) > i"));
+        private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+        private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
+         private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
+        public void AddSkills(string skill, string level)
         {
             //----------------ADD NEW SKILL --------------------------
-            IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
+            skillsTab.Click();
+            Thread.Sleep(1000);
+
             addNewButton.Click();
 
-            IWebElement addSkillTextbox = driver.FindElement(By.Name("name"));
             addSkillTextbox.SendKeys(skill);
-            Thread.Sleep(1000);
 
-            IWebElement SkillLevelDropdown = driver.FindElement(By.Name("level"));
-            Thread.Sleep(1000);
-            SkillLevelDropdown.SendKeys(level);
-            Thread.Sleep(2000);
+            skillLevelDropdown.SendKeys(level);
 
-            IWebElement addButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/span/input[1]"));
             addButton.Click();
-            Thread.Sleep(2000);
-        }
+            Thread.Sleep(3000);
 
-        public string GetSkill(IWebDriver driver)
+        }
+        public string GetSkills()
         {
-            IWebElement addedSkill = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+           /* var selectElement = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[1]"));
+            var select = new SelectElement(selectElement);
+            IList<IWebElement> optionList = select.Options;
+            select.SelectByValue("Coding");*/
+            
+            
             return addedSkill.Text;
         }
 
-        public string GetLevel(IWebDriver driver)
+        public string GetLevel()
         {
-            IWebElement addedLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
+            
             return addedLevel.Text;
 
         }
-        public void UpdateSkill(IWebDriver driver, string skill , string level)
+
+       /* public string GetDuplicateSkillLevel()
+        { 
+            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='This skill is already exist in your skill list.']"));
+            string errormessage = actualerrorMessage.Text;
+            return errormessage;
+        }
+
+        public void AddSameSkillDifferentLevel()
+        {
+           
+            addNewButton.Click();
+            addSkillTextbox.SendKeys("Coding");
+
+            var selectElement = new SelectElement(driver.FindElement(By.Name("level")));
+            selectElement.SelectByText("Expert");
+            Thread.Sleep(3000);
+            addButton.Click();
+
+        }
+        public string GetSameSkillDifferentLevel()
+        {
+            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='Duplicated data']"));
+            string errormessage = actualerrorMessage.Text;
+            return errormessage;
+        }*/
+
+        public void UpdateSkill(string skill, string slevel)
         {
             //--------------------------------UPDATE SKILL---------------------------------
 
-            //Click on Edit Icon
-            IWebElement editIcon = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[1]/i"));
-            editIcon.Click();
-
-            //Edit Language
-            IWebElement addLanguageTextbox = driver.FindElement(By.Name("name"));
-            addLanguageTextbox.Clear();
-            Thread.Sleep(1000);
-            addLanguageTextbox.SendKeys(skill);
-
-            //Edit Language level
-            IWebElement skillLevelDropdown = driver.FindElement(By.Name("level"));
-            Thread.Sleep(1000);
-            skillLevelDropdown.SendKeys(level);
+            skillsTab.Click();
             Thread.Sleep(3000);
+           
+            //Click on Edit Icon
+             editSkillIcon.Click();
+             Thread.Sleep(2000);
+
+            //Edit Skill
+           
+            skillTextBox.Clear();
+            Thread.Sleep(1000);
+            skillTextBox.SendKeys(skill);
+            Thread.Sleep(1000);
+
+
+            //Edit Skill level
+            skillLevelDropdown.SendKeys(slevel);
+            Thread.Sleep(2000);
 
             //Click on Update button
-            IWebElement updateButton = driver.FindElement(By.XPath("//input[contains(@type,'button')]"));
+          
             updateButton.Click();
-            Thread.Sleep(4000);
+            Thread.Sleep(1000);
 
         }
-        public void DeleteSkill(IWebDriver driver)
+
+        public string GetEditedSkill()
         {
-            IWebElement removeIcon = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
-            removeIcon.Click();
+            
+            return editedSkill.Text;
         }
+        public string GetEditedSkillLevel()
+        {
+           
+            return editedSkillLevel.Text;
+        }
+        public void DeleteSkill()
+        {
+            skillsTab.Click();
+            Thread.Sleep(2000);
+
+            removeIcon.Click();
+            Thread.Sleep(1000);
+        }
+
+        public string GetDeleteSkill()
+        {
+            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='Coding has been deleted']"));
+            return actualerrorMessage.Text;
+            
+        }
+
+        /*public void SkillLevelEmpty()
+        {
+           
+            addNewButton.Click();
+            Thread.Sleep(2000);
+
+            addSkillTextbox.Click();
+            addSkillTextbox.Clear();
+            Thread.Sleep(1000);
+
+            addButton.Click();
+            Thread.Sleep(1000);
+
+        }
+
+        public string GetSkillLevelEmpty()
+        {
+            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//*[text()='Please enter skill and experience level']"));
+            string errormessage = actualerrorMessage.Text;
+            return errormessage;
+        }*/
+
     }
 }
