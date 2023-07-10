@@ -58,3 +58,17 @@ Scenario: TC_002_09 add skill using keyboard keys
 Given Launch Mars and login with valid credentials
 When Add Skills I have using keyboard keys 
 Then Skill is added to the list successfully 
+
+Scenario: TC_002_13 User clicks on update button without making changes
+Given Launch Mars and login with valid credentials
+When Click on edit icon of skills and update button without making changes
+Then Error message skill already exists is displayed
+
+Scenario Outline:TC_002_14 Updated changes are not saved on clicking cancel
+Given Launch Mars and login with valid credentials
+When I update skill and level '<skill>' and '<level>' and click on cancel
+Then Updated changes are not saved for '<skill>','<level>'
+
+Examples: 
+| skill    | level  |
+| Teamwork | Expert |

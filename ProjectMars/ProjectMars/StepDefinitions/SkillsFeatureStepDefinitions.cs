@@ -152,6 +152,36 @@ namespace ProjectMars.StepDefinitions
             Assert.AreEqual("Beginner", newLevel, "Actual skill and expected skill do not match");
         }
 
+        [When(@"Click on edit icon of skills and update button without making changes")]
+        public void WhenClickOnEditIconOfSkillsAndUpdateButtonWithoutMakingChanges()
+        {
+            skillssectionobject.UpdateSkillNoChanges();
+        }
+
+        [Then(@"Error message skill already exists is displayed")]
+        public void ThenErrorMessageSkillAlreadyExistsIsDisplayed()
+        {
+            string errorMessage = skillssectionobject.GetUpdateNoChangesSkill();
+            string expectedMessage = "This skill is already added to your skill list.";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"I update skill and level '([^']*)' and '([^']*)' and click on cancel")]
+        public void WhenIUpdateSkillAndLevelAndAndClickOnCancel(string skill, string level)
+        {
+            skillssectionobject.UpdateSkillCancel(skill, level);
+        }
+
+        [Then(@"Updated changes are not saved for '([^']*)','([^']*)'")]
+        public void ThenUpdatedChangesAreNotSavedFor(string skill, string level)
+        {
+            string editedSkill = skillssectionobject.GetEditedSkill();
+            string editedSkillLevel = skillssectionobject.GetEditedSkillLevel();
+
+            Assert.AreNotEqual(editedSkill, skill, "Actual skill and expected skill match");
+            Assert.AreNotEqual(editedSkillLevel, level, "Actual level and expected level match");
+        }
 
 
     }

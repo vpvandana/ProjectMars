@@ -29,6 +29,8 @@ namespace ProjectMars.Pages
           private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
           private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
           private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
+          private static IWebElement cancelIcon => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[2]"));
+        
         public void AddSkills(string skill, string level)
         {
             //----------------ADD NEW SKILL --------------------------
@@ -62,32 +64,6 @@ namespace ProjectMars.Pages
             return addedLevel.Text;
 
         }
-
-       /* public string GetDuplicateSkillLevel()
-        { 
-            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='This skill is already exist in your skill list.']"));
-            string errormessage = actualerrorMessage.Text;
-            return errormessage;
-        }
-
-        public void AddSameSkillDifferentLevel()
-        {
-           
-            addNewButton.Click();
-            addSkillTextbox.SendKeys("Coding");
-
-            var selectElement = new SelectElement(driver.FindElement(By.Name("level")));
-            selectElement.SelectByText("Expert");
-            Thread.Sleep(3000);
-            addButton.Click();
-
-        }
-        public string GetSameSkillDifferentLevel()
-        {
-            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='Duplicated data']"));
-            string errormessage = actualerrorMessage.Text;
-            return errormessage;
-        }*/
 
         public void UpdateSkill(string skill, string slevel)
         {
@@ -219,6 +195,53 @@ namespace ProjectMars.Pages
         {
             return addedLevel.Text;
         }
+
+        public void UpdateSkillNoChanges()
+        {
+            //--------------------------------UPDATE LANGUAGE WITHOUT MAKING CHANGES---------------------------------
+
+            skillsTab.Click();
+            
+            //Click on Edit Icon
+            editSkillIcon.Click();
+            Thread.Sleep(3000);
+
+            //Click on update button
+
+            updateButton.Click();
+            Thread.Sleep(3000);
+
+        }
+
+        public string GetUpdateNoChangesSkill()
+        {
+            IWebElement actualErrorMessage = driver.FindElement(By.XPath("//div[text()='This skill is already added to your skill list.']"));
+            return actualErrorMessage.Text;
+
+        }
+
+        public void UpdateSkillCancel(string skill, string level)
+        {
+            skillsTab.Click();
+
+            editSkillIcon.Click();
+            Thread.Sleep(3000);
+
+            //Edit Language
+            addSkillTextbox.Clear();
+            Thread.Sleep(1000);
+            addSkillTextbox.SendKeys(skill);
+
+            //Edit Language level
+            skillLevelDropdown.SendKeys(level);
+            Thread.Sleep(1000);
+
+
+            cancelIcon.Click();
+            Thread.Sleep(1000);
+        }
+
+       
 
     }
 }
