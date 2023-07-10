@@ -19,12 +19,12 @@ namespace ProjectMars.Pages
           private static IWebElement addButton => driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
           private static IWebElement skillLevelDropdown => driver.FindElement(By.Name("level"));
           private static IWebElement skillTextBox => driver.FindElement(By.XPath("//input[@placeholder='Add Skill']"));
-          private static IWebElement updateButton => driver.FindElement(By.XPath("//input[@value='Update']"));
+          private static IWebElement updateButton => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[1]"));
           private static IWebElement skillsTab => driver.FindElement(By.XPath("//a[text()='Skills']"));
           private static IWebElement addedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
           private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
-          private static IWebElement editSkillIcon => driver.FindElement(By.CssSelector("#account-profile-section > div > section:nth-child(3) > div > div > div > div.eight.wide.column > form > div.ui.bottom.attached.tab.segment.tooltip-target.active > div > div.twelve.wide.column.scrollTable > div > table > tbody > tr > td.right.aligned > span:nth-child(1) > i"));
-        private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+          private static IWebElement editSkillIcon => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody[last()]//child::span[1]/i"));
+        private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
         private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
          private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
         public void AddSkills(string skill, string level)
@@ -108,12 +108,12 @@ namespace ProjectMars.Pages
 
             //Edit Skill level
             skillLevelDropdown.SendKeys(slevel);
-            Thread.Sleep(2000);
+           // Thread.Sleep(3000);
 
             //Click on Update button
           
             updateButton.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
 
         }
 

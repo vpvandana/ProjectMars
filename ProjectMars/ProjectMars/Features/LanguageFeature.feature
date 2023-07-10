@@ -67,6 +67,16 @@ Given Launch Mars and login with valid credentials
 When Click on edit icon and update button without making changes
 Then Error message Language and level already added is displayed
 
+Scenario Outline:TC_002_15 Updated changes are not saved on clicking cancel
+Given Launch Mars and login with valid credentials
+When Update language '<language>' and level '<level>' and click on cancel
+Then Updated changes are not saved for '<language>' and '<level>'
+
+Examples: 
+| language  | level  |
+| Malayalam | Fluent |
+
+
 
 
 

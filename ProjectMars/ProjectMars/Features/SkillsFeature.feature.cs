@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TC_003_02 Update the existing skill and level")]
-        [NUnit.Framework.TestCaseAttribute("Testing", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("Chess", "Beginner", null)]
         public void TC_003_02UpdateTheExistingSkillAndLevel(string skill, string slevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -135,7 +135,7 @@ testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)
 testRunner.When(string.Format("I Update the existing skill and skill level \'{0}\' and \'{1}\'", skill, slevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
-testRunner.Then(string.Format("The record is updated\'{0}\' and \'{1}\'", skill, slevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then(string.Format("The skill record is updated\'{0}\' and \'{1}\'", skill, slevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

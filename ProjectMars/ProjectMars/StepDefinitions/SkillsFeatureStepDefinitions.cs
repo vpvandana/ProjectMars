@@ -60,16 +60,17 @@ namespace ProjectMars.StepDefinitions
             skillssectionobject.UpdateSkill(skill,slevel);
         }
 
-        [Then(@"The record is updated '([^']*)' '([^']*)'")]
-        public void ThenTheRecordIsUpdated(string skill, string slevel)
+        [Then(@"The skill record is updated'([^']*)' and '([^']*)'")]
+        public void ThenTheSkillRecordIsUpdatedAnd(string skill, string slevel)
         {
-          
+            
             string editedSkill = skillssectionobject.GetEditedSkill();
             string editedSkillLevel = skillssectionobject.GetEditedSkillLevel();
 
-            Assert.AreEqual(skill, editedSkill, "Actual skill and edited skill do not match");
-            Assert.AreEqual(slevel, editedSkillLevel, "Actual and edited level do not match");
+            Assert.AreEqual(editedSkill, skill, "Actual skill and expected skill do not match");
+            Assert.AreEqual(editedSkillLevel, slevel, "Actual level and expected level do not match");
         }
+
 
 
 

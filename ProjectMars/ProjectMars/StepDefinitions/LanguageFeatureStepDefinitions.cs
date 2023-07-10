@@ -162,7 +162,21 @@ namespace ProjectMars.StepDefinitions
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
         }
 
+        [When(@"Update language '([^']*)' and level '([^']*)' and click on cancel")]
+        public void WhenUpdateLanguageAndLevelAndClickOnCancel(string language, string level)
+        {
+            languagesectionobject.UpdateLanguageCancel(language,level);
+        }
 
+        [Then(@"Updated changes are not saved for '([^']*)' and '([^']*)'")]
+        public void ThenUpdatedChangesAreNotSavedForAnd(string language, string level)
+        {
+            string editedLanguage = languagesectionobject.GetNoUpdateLanguage();
+            string editedLevel = languagesectionobject.GetNoUpdateLanguageLevel();
+
+            Assert.AreNotEqual(language, editedLanguage, "Updates are not made for language");
+            Assert.AreNotEqual(level, editedLevel, "Updates are not made for level");
+        }
 
 
 

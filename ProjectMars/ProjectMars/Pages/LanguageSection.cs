@@ -17,27 +17,29 @@ namespace ProjectMars.Pages
     public class LanguageSection : CommonDriver
     {
 
-       private static IWebElement addNewButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
+        private static IWebElement addNewButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
         private static IWebElement addLanguageTextbox => driver.FindElement(By.Name("name"));
 
         private static IWebElement languageLevelDropdown => driver.FindElement(By.Name("level"));
 
-       private static IWebElement addLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
+        private static IWebElement addLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[2]"));
 
-       private static  IWebElement addButton => driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
-       private static IWebElement addedLanguage => driver.FindElement(By.XPath("//div[@class='form-wrapper']//parent::tbody//following-sibling::tbody[last()]//tr/td[1]"));
-       private static IWebElement addedLevel => driver.FindElement(By.XPath("//div[@class='form-wrapper']//preceding::tr[1]//child::td[2]"));
-       private static IWebElement editIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[1]/i"));
-       private static  IWebElement updateButton => driver.FindElement(By.XPath("//input[contains(@type,'button')]"));
-       private static IWebElement editedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
+        private static  IWebElement addButton => driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
+        private static IWebElement addedLanguage => driver.FindElement(By.XPath("//div[@class='form-wrapper']//parent::tbody//following-sibling::tbody[last()]//tr/td[1]"));
+        private static IWebElement addedLevel => driver.FindElement(By.XPath("//div[@class='form-wrapper']//preceding::tr[1]//child::td[2]"));
+        private static IWebElement updateIcon => driver.FindElement(By.XPath("//*[text()='Language']//ancestor::table//child::tbody[last()]//child::span[1]/i"));
+        private static IWebElement editIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[1]/i"));
+        private static  IWebElement updateButton => driver.FindElement(By.XPath("//input[contains(@type,'button')]"));
+        private static IWebElement editedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[1]"));
 
-       private static IWebElement editedLanguageLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
-       private static IWebElement chooseLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[1]"));
+        private static IWebElement editedLanguageLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+        private static IWebElement chooseLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[1]"));
 
         // private  IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='This language is already exist in your language list.']"));
         private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
-            
-       // private static IWebElement deletedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+
+        private static IWebElement cancelButton => driver.FindElement(By.XPath("//*[@value='Cancel']"));
+        // private static IWebElement deletedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
         //private static IWebElement deletedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
         public void AddLanguage(string language , string level)
         {
@@ -201,7 +203,7 @@ namespace ProjectMars.Pages
             //--------------------------------UPDATE LANGUAGE WITHOUT MAKING CHANGES---------------------------------
 
             //Click on Edit Icon
-            IWebElement updateIcon = driver.FindElement(By.XPath("//span[@class='button']/descendant::i[1]"));
+            
             updateIcon.Click();
             Thread.Sleep(3000);
 
@@ -219,36 +221,39 @@ namespace ProjectMars.Pages
            
         }
 
+       public void UpdateLanguageCancel(string language , string level)
+       {
 
+           updateIcon.Click();
+           Thread.Sleep(3000);
 
-        /* public void AddDifferentCaseLanguage(IWebDriver driver)
-         {
-            //----------------ADD SAME LANGUAGE WITH DIFFERENT LEVEL--------------------------
-            IWebElement addNewButton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div"));
-            addNewButton.Click();
-            Thread.Sleep(3000);
+           //Edit Language
+           addLanguageTextbox.Clear();
+           Thread.Sleep(1000);
+           addLanguageTextbox.SendKeys(language);
 
-            IWebElement addLanguageTextbox = driver.FindElement(By.Name("name"));
-            addLanguageTextbox.SendKeys("english");
-            Thread.Sleep(2000);
+           //Edit Language level
+           languageLevelDropdown.SendKeys(level);
+           Thread.Sleep(1000);
 
-            IWebElement languageLevelDropdown = driver.FindElement(By.Name("level"));
-            Thread.Sleep(1000);
+           
+           cancelButton.Click();
+           Thread.Sleep(1000);
+       }
 
-            IWebElement conversationalLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[3]"));
-            conversationalLevel.Click();
-
-            IWebElement addButton = driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
-            addButton.Click();
-            Thread.Sleep(2000);
-         }
-
-         public string GetDifferentCaseLanguage(IWebDriver driver)
+        public string GetNoUpdateLanguage()
         {
-            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//a[@href='#']//ancestor::div/div"));
-            string errormessage = actualerrorMessage.Text;
-            return errormessage;
-        }*/
+            IWebElement noEditLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[1]"));
+            return noEditLanguage.Text;
+        }
+
+        public string GetNoUpdateLanguageLevel()
+        {
+            IWebElement noEditLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[2]"));
+            return noEditLanguageLevel.Text;
+        }
+
+
 
         public void DeleteLanguage()
         {
@@ -272,35 +277,7 @@ namespace ProjectMars.Pages
             IWebElement deleteErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"));
             return deleteErrorMessage.Text;
         }*/
-
-        
-
-       
-       
-       
-
-      /*  public void UpdateLanguageCancel(IWebDriver driver , string language , string level)
-        {
-
-            IWebElement editIcon = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i"));
-            editIcon.Click();
-            Thread.Sleep(3000);
-
-            //Edit Language
-            IWebElement addLanguageTextbox = driver.FindElement(By.Name("name"));
-            addLanguageTextbox.Clear();
-            Thread.Sleep(1000);
-            addLanguageTextbox.SendKeys(language);
-
-            //Edit Language level
-            IWebElement editLanguageLevel = driver.FindElement(By.Name("level"));
-            editLanguageLevel.SendKeys(level);
-            Thread.Sleep(1000);
-
-            IWebElement cancelButton = driver.FindElement(By.XPath("//*[@value='Cancel']"));
-            cancelButton.Click();
-            Thread.Sleep(1000);
-        }*/
+     
 
     }
 }
