@@ -73,10 +73,6 @@ namespace ProjectMars.StepDefinitions
 
 
 
-
-
-
-
         [When(@"I click on cancel icon of added skill")]
         public void WhenIClickOnCancelIconOfAddedSkill()
         {
@@ -94,7 +90,69 @@ namespace ProjectMars.StepDefinitions
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
         }
 
-      
+        [When(@"I left skill and level field empty")]
+        public void WhenILeftSkillAndLevelFieldEmpty()
+        {
+            skillssectionobject.SkillLevelEmpty();
+        }
+
+        [Then(@"Error message to enter is displayed")]
+        public void ThenErrorMessageToEnterIsDisplayed()
+        {
+            string errorMessage =  skillssectionobject.GetSkillLevelEmpty();
+            string expectedMessage = "Please enter skill and experience level";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+
+        }
+
+        [When(@"I add skill and level '([^']*)' and '([^']*)' already in the list")]
+        public void WhenIAddSkillAndLevelAndAlreadyInTheList(string skill, string level)
+        {
+            skillssectionobject.AddSkills(skill, level);    
+        }
+
+        [Then(@"Error message Skill already exists is displayed")]
+        public void ThenErrorMessageSkillAlreadyExistsIsDisplayedAnd()
+        {
+            string errorMessage = skillssectionobject.GetDuplicateSkillLevel();
+            string expectedMessage = "This skill is already exist in your skill list.";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"I add same skill with different level '([^']*)' and '([^']*)'")]
+        public void WhenIAddSameSkillWithDifferentLevelAnd(string skill, string level)
+        {
+            skillssectionobject.AddSkills(skill, level);
+        }
+
+        [Then(@"Error message Duplicated data is displayed")]
+        public void ThenErrorMessageDuplicatedDataIsDisplayed()
+        {
+            string errorMessage = skillssectionobject.GetDuplicateSkill();
+            string expectedMessage = "Duplicated data";
+
+            Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
+        }
+
+        [When(@"Add Skills I have using keyboard keys")]
+        public void WhenAddSkillsIHaveUsingKeyboardKeys()
+        {
+            skillssectionobject.AddSkillKeyboard();
+        }
+
+        [Then(@"Skill is added to the list successfully")]
+        public void ThenSkillIsAddedToTheListSuccessfully()
+        {
+            string newSkill = skillssectionobject.GetSkillKeyboard();
+            string newLevel = skillssectionobject.GetSkillLevelKeyboard();
+
+            Assert.AreEqual("Flexibility", newSkill, "Actual skill and expected skill do not match");
+            Assert.AreEqual("Beginner", newLevel, "Actual skill and expected skill do not match");
+        }
+
+
 
     }
 }

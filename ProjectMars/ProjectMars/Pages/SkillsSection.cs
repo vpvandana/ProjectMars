@@ -14,19 +14,21 @@ namespace ProjectMars.Pages
     public class SkillsSection : CommonDriver
     {
         // private static IWebElement skillsTab => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
-         private static IWebElement addNewButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
+          private static IWebElement addNewButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/thead/tr/th[3]/div"));
           private static IWebElement addSkillTextbox => driver.FindElement(By.Name("name"));
           private static IWebElement addButton => driver.FindElement(By.XPath("//input[starts-with(@type,'button')]"));
           private static IWebElement skillLevelDropdown => driver.FindElement(By.Name("level"));
           private static IWebElement skillTextBox => driver.FindElement(By.XPath("//input[@placeholder='Add Skill']"));
+
+          private static IWebElement chooseLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option[1]"));
           private static IWebElement updateButton => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[1]"));
           private static IWebElement skillsTab => driver.FindElement(By.XPath("//a[text()='Skills']"));
-          private static IWebElement addedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+          private static IWebElement addedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1][last()]"));
           private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
           private static IWebElement editSkillIcon => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody[last()]//child::span[1]/i"));
-        private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
-        private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
-         private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
+          private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+          private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
+          private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
         public void AddSkills(string skill, string level)
         {
             //----------------ADD NEW SKILL --------------------------
@@ -143,8 +145,10 @@ namespace ProjectMars.Pages
             
         }
 
-        /*public void SkillLevelEmpty()
+        //TC_003_03
+        public void SkillLevelEmpty()
         {
+            skillsTab.Click();
            
             addNewButton.Click();
             Thread.Sleep(2000);
@@ -153,6 +157,9 @@ namespace ProjectMars.Pages
             addSkillTextbox.Clear();
             Thread.Sleep(1000);
 
+            skillLevelDropdown.Click();
+            chooseLevel.Click();
+
             addButton.Click();
             Thread.Sleep(1000);
 
@@ -160,10 +167,58 @@ namespace ProjectMars.Pages
 
         public string GetSkillLevelEmpty()
         {
-            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//*[text()='Please enter skill and experience level']"));
-            string errormessage = actualerrorMessage.Text;
-            return errormessage;
-        }*/
+            IWebElement actualErrorMessage = driver.FindElement(By.XPath("//*[text()='Please enter skill and experience level']"));
+            return actualErrorMessage.Text;
+          
+        }
+
+        //TC_002_04
+        public string GetDuplicateSkillLevel()
+        {
+            IWebElement actualErrorMessage = driver.FindElement(By.XPath("//*[text()='This skill is already exist in your skill list.']"));
+            return actualErrorMessage.Text;
+
+        }
+
+        //TC_002_05
+        public string GetDuplicateSkill()
+        {
+
+            IWebElement actualErrorMessage = driver.FindElement(By.XPath("//div[text()='Duplicated data']"));
+            return actualErrorMessage.Text;
+
+        }
+
+         public void AddSkillKeyboard()
+        {
+            //----------------ADD NEW SKILL USING KEYBOARD --------------------------
+            skillsTab.Click();
+
+            addNewButton.Click();
+            Thread.Sleep(3000);
+
+            addSkillTextbox.SendKeys("Flexibility");
+            Thread.Sleep(2000);
+
+            //Navigate to level using keyboard
+            addSkillTextbox.SendKeys(Keys.Tab);
+            skillLevelDropdown.SendKeys(Keys.ArrowDown);
+            skillLevelDropdown.Click();
+            skillLevelDropdown.SendKeys(Keys.Tab);
+
+            Thread.Sleep(1000);
+            addButton.SendKeys(Keys.Enter);
+           
+        }
+        public string GetSkillKeyboard()
+        {
+            return addedSkill.Text;
+        }
+
+        public string GetSkillLevelKeyboard()
+        {
+            return addedLevel.Text;
+        }
 
     }
 }

@@ -31,3 +31,30 @@ Given Launch Mars and login with valid credentials
 When I click on cancel icon of added skill
 Then Skill deleted successfully from list
 
+Scenario: TC_003_03 Level and skill field empty
+Given Launch Mars and login with valid credentials
+When I left skill and level field empty
+Then Error message to enter is displayed
+
+Scenario Outline:TC_003_04 Add existing skill and level
+Given Launch Mars and login with valid credentials
+When I add skill and level '<skill>' and '<level>' already in the list
+Then Error message Skill already exists is displayed 
+
+Examples: 
+| skill  | level    |
+| Coding | Beginner |
+
+Scenario Outline:TC_003_05 Duplicate skill with different level
+Given Launch Mars and login with valid credentials
+When I add same skill with different level '<skill>' and '<level>'
+Then Error message Duplicated data is displayed
+
+Examples:
+| skill  | level  |
+| Coding | Expert |
+
+Scenario: TC_002_09 add skill using keyboard keys
+Given Launch Mars and login with valid credentials
+When Add Skills I have using keyboard keys 
+Then Skill is added to the list successfully 
