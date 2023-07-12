@@ -24,7 +24,7 @@ namespace ProjectMars.Pages
           private static IWebElement updateButton => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[1]"));
           private static IWebElement skillsTab => driver.FindElement(By.XPath("//a[text()='Skills']"));
           private static IWebElement addedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1][last()]"));
-          private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[2]"));
+          private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
           private static IWebElement editSkillIcon => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody[last()]//child::span[1]/i"));
           private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
           private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
@@ -65,7 +65,7 @@ namespace ProjectMars.Pages
 
         }
 
-        public void UpdateSkill(string skill, string slevel)
+        public void UpdateSkill(string skill, string level)
         {
             //--------------------------------UPDATE SKILL---------------------------------
 
@@ -85,7 +85,7 @@ namespace ProjectMars.Pages
 
 
             //Edit Skill level
-            skillLevelDropdown.SendKeys(slevel);
+            skillLevelDropdown.SendKeys(level);
            // Thread.Sleep(3000);
 
             //Click on Update button
@@ -184,6 +184,7 @@ namespace ProjectMars.Pages
 
             Thread.Sleep(1000);
             addButton.SendKeys(Keys.Enter);
+            Thread.Sleep(2000);
            
         }
         public string GetSkillKeyboard()
@@ -198,7 +199,7 @@ namespace ProjectMars.Pages
 
         public void UpdateSkillNoChanges()
         {
-            //--------------------------------UPDATE LANGUAGE WITHOUT MAKING CHANGES---------------------------------
+            //--------------------------------UPDATE SKILL WITHOUT MAKING CHANGES---------------------------------
 
             skillsTab.Click();
             

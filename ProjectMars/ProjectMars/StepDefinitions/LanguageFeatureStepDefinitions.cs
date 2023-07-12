@@ -80,7 +80,7 @@ namespace ProjectMars.StepDefinitions
         public void ThenLanguageRecordIsDeleted()
         {
             string errorMessage = languagesectionobject.GetDeleteLanguage();
-            string expectedMessage = "French has been deleted from your languages";
+            string expectedMessage = "Dutch has been deleted from your languages";
 
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
         }

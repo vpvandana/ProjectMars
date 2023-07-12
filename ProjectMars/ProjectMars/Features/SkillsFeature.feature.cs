@@ -111,12 +111,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TC_003_02 Update the existing skill and level")]
         [NUnit.Framework.TestCaseAttribute("Chess", "Beginner", null)]
-        public void TC_003_02UpdateTheExistingSkillAndLevel(string skill, string slevel, string[] exampleTags)
+        public void TC_003_02UpdateTheExistingSkillAndLevel(string skill, string level, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("skill", skill);
-            argumentsOfScenario.Add("slevel", slevel);
+            argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_003_02 Update the existing skill and level", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
@@ -132,10 +132,10 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 21
-testRunner.When(string.Format("I Update the existing skill and skill level \'{0}\' and \'{1}\'", skill, slevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I Update the existing skill and skill level \'{0}\' and \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
-testRunner.Then(string.Format("The skill record is updated\'{0}\' and \'{1}\'", skill, slevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then(string.Format("The skill record is updated\'{0}\' and \'{1}\'", skill, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

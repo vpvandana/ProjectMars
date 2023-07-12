@@ -18,11 +18,11 @@ Scenario Outline: TC_003_01 Add new skills
 
 Scenario Outline: TC_003_02 Update the existing skill and level
 Given Launch Mars and login with valid credentials
-When I Update the existing skill and skill level '<skill>' and '<slevel>'
-Then The skill record is updated'<skill>' and '<slevel>'
+When I Update the existing skill and skill level '<skill>' and '<level>'
+Then The skill record is updated'<skill>' and '<level>'
 
 Examples: 
-| skill   | slevel |
+| skill   | level |
 | Chess | Beginner |
 
 

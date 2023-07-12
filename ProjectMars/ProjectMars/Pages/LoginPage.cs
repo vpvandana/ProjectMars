@@ -30,8 +30,8 @@ namespace ProjectMars.Pages
 
            //Enter valid Username and Password
            
-            emailTextbox.SendKeys("vandanapurushothaman2@gmail.com");
-            passwordTextbox.SendKeys("vedika2016");
+            emailTextbox.SendKeys("vandanapradeep1991@gmail.com");
+            passwordTextbox.SendKeys("12341234");
 
             //Sign In using Login Button
            
