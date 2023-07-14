@@ -47,21 +47,18 @@ namespace ProjectMars.Pages
             //----------------ADD NEW LANGUAGE --------------------------
             
             addNewButton.Click();
-            Thread.Sleep(3000);
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div", 5);
 
             
             addLanguageTextbox.SendKeys(language);
             Thread.Sleep(2000);
-
-            
-            Thread.Sleep(1000);
 
             languageLevelDropdown.SendKeys(level);
             languageLevelDropdown.Click();
 
             
             addButton.Click();
-            Thread.Sleep(1000);
+            Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 7);
         }
         public string GetLanguage()
         {
@@ -82,28 +79,22 @@ namespace ProjectMars.Pages
             //--------------------------------UPDATE LANGUAGE---------------------------------
 
             //Click on Edit Icon
-           
-            Thread.Sleep(1000);
-             updateIcon.Click();
-            Thread.Sleep(3000);
+            updateIcon.Click();
+            Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Language']//ancestor::table//child::tbody[last()]//child::span[1]/i", 5);
 
             //Edit Language
-            
             addLanguageTextbox.Clear();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
             addLanguageTextbox.SendKeys(language);
 
             //Edit Language level
             languageLevelDropdown.SendKeys(level);
-            Thread.Sleep(1000);
-
-            /*IWebElement conversationalLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/div[2]/select/option[3]"));
-            conversationalLevel.Click();*/
+            Thread.Sleep(3000);
 
             //Click on Update button
-           
             updateButton.Click();
             Thread.Sleep(3000);
+            
 
         }
 
@@ -124,22 +115,18 @@ namespace ProjectMars.Pages
 
             
             addNewButton.Click();
-            Thread.Sleep(3000);
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div", 5);
 
             //Language field empty
-            
             addLanguageTextbox.Clear();
             Thread.Sleep(1000);
 
             //Level field empty
-           
-            Thread.Sleep(1000);
             chooseLevel.Click();
             
-            //Click on add button
-            
+            //Click on add button  
             addButton.Click();
-            Thread.Sleep(2000);
+            Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 7);
 
         }
 
@@ -173,7 +160,8 @@ namespace ProjectMars.Pages
             //----------------ADD NEW LANGUAGE USING KEYBOARD --------------------------
             
             addNewButton.Click();
-            Thread.Sleep(3000);
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/thead/tr/th[3]/div", 5);
+
 
             addLanguageTextbox.SendKeys("Korean");
             Thread.Sleep(2000);
@@ -184,10 +172,10 @@ namespace ProjectMars.Pages
             languageLevelDropdown.Click();
             languageLevelDropdown.SendKeys(Keys.Tab);
 
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             addButton.SendKeys(Keys.Enter);
-            Thread.Sleep(2000);
-           
+            Thread.Sleep(3000);
+
         }
         public string GetLanguageKeyboard()
         {
@@ -205,10 +193,10 @@ namespace ProjectMars.Pages
             //Click on Edit Icon
             
             updateIcon.Click();
-            Thread.Sleep(3000);
+            Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Language']//ancestor::table//child::tbody[last()]//child::span[1]/i", 5);
 
             //Click on update button
-            
+
             updateButton.Click();
             Thread.Sleep(3000);
 
@@ -225,9 +213,9 @@ namespace ProjectMars.Pages
        {
 
            updateIcon.Click();
-           Thread.Sleep(3000);
+           Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Language']//ancestor::table//child::tbody[last()]//child::span[1]/i", 5);
 
-           //Edit Language
+            //Edit Language
            addLanguageTextbox.Clear();
            Thread.Sleep(1000);
            addLanguageTextbox.SendKeys(language);
@@ -236,7 +224,6 @@ namespace ProjectMars.Pages
            languageLevelDropdown.SendKeys(level);
            Thread.Sleep(1000);
 
-           
            cancelButton.Click();
            Thread.Sleep(1000);
        }
@@ -255,7 +242,6 @@ namespace ProjectMars.Pages
         public void DeleteLanguage()
         {
 
-          
             removeIcon .Click();
             Thread.Sleep(1000);
             

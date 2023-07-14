@@ -44,7 +44,10 @@ namespace ProjectMars.Pages
             skillLevelDropdown.SendKeys(level);
 
             addButton.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
+
+            Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 7);
+            
 
         }
         public string GetSkills()
@@ -70,7 +73,7 @@ namespace ProjectMars.Pages
             //--------------------------------UPDATE SKILL---------------------------------
 
             skillsTab.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
            
             //Click on Edit Icon
              editSkillIcon.Click();
@@ -81,17 +84,16 @@ namespace ProjectMars.Pages
             skillTextBox.Clear();
             Thread.Sleep(1000);
             skillTextBox.SendKeys(skill);
-            Thread.Sleep(1000);
-
-
+      
             //Edit Skill level
             skillLevelDropdown.SendKeys(level);
-           // Thread.Sleep(3000);
+         
 
             //Click on Update button
           
             updateButton.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
+            //Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[1]", 7);
 
         }
 
@@ -205,8 +207,7 @@ namespace ProjectMars.Pages
             
             //Click on Edit Icon
             editSkillIcon.Click();
-            Thread.Sleep(3000);
-
+            
             //Click on update button
 
             updateButton.Click();
@@ -226,7 +227,8 @@ namespace ProjectMars.Pages
             skillsTab.Click();
 
             editSkillIcon.Click();
-            Thread.Sleep(3000);
+           
+            Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Skill']//ancestor::thead//following-sibling::tbody[last()]//child::span[1]/i", 7);
 
             //Edit Language
             addSkillTextbox.Clear();
@@ -235,9 +237,7 @@ namespace ProjectMars.Pages
 
             //Edit Language level
             skillLevelDropdown.SendKeys(level);
-            Thread.Sleep(1000);
-
-
+    
             cancelIcon.Click();
             Thread.Sleep(1000);
         }

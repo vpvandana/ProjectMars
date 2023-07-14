@@ -36,7 +36,9 @@ namespace ProjectMars.Pages
             //Sign In using Login Button
            
             loginButton.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
+
+            Wait.WaitToBeClickable(driver, "XPath", "/html/body/div[2]/div/div/div[1]/div/div[4]", 7);
         }
 
        
