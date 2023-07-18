@@ -51,6 +51,9 @@ namespace ProjectMars.Utilities
                 wait.Until((SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.CssSelector(locatorValue))));
 
             }
-        }           
+           
+        } 
+        
+      
     }
 }

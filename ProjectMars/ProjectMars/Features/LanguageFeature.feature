@@ -31,8 +31,12 @@ Examples:
 
 Scenario:TC_002_09 Click on Cancel icon
 Given Launch Mars and login with valid credentials
-When I click on cancel icon of added 
-Then Language record is deleted 
+When I click on cancel icon of added '<language>' and '<level>'
+Then Language record is deleted '<language>' and '<level>'
+
+Examples: 
+| language | level  |
+| English  | Fluent |
 
 Scenario:TC_002_03 Language and level field empty
 Given Launch Mars and login with valid credentials

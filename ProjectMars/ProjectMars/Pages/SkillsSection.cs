@@ -27,15 +27,15 @@ namespace ProjectMars.Pages
           private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
           private static IWebElement editSkillIcon => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody[last()]//child::span[1]/i"));
           private static IWebElement editedSkill => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
-          private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody/tr/td[2]"));
-          private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i"));
+          private static IWebElement editedSkillLevel => driver.FindElement(By.XPath("//div[text()='Do you have any skills?']/parent::div/following-sibling::div/descendant::tbody[last()]/tr/td[2]"));
+          private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i"));
           private static IWebElement cancelIcon => driver.FindElement(By.XPath("//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[2]"));
         
         public void AddSkills(string skill, string level)
         {
             //----------------ADD NEW SKILL --------------------------
             skillsTab.Click();
-            Thread.Sleep(1000);
+            
 
             addNewButton.Click();
 
@@ -44,9 +44,9 @@ namespace ProjectMars.Pages
             skillLevelDropdown.SendKeys(level);
 
             addButton.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
 
-            Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 7);
+            Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 9);
             
 
         }
@@ -73,16 +73,16 @@ namespace ProjectMars.Pages
             //--------------------------------UPDATE SKILL---------------------------------
 
             skillsTab.Click();
-            Thread.Sleep(2000);
+            
            
             //Click on Edit Icon
              editSkillIcon.Click();
-             Thread.Sleep(2000);
+             
 
             //Edit Skill
            
             skillTextBox.Clear();
-            Thread.Sleep(1000);
+          
             skillTextBox.SendKeys(skill);
       
             //Edit Skill level
@@ -92,8 +92,8 @@ namespace ProjectMars.Pages
             //Click on Update button
           
             updateButton.Click();
-            Thread.Sleep(2000);
-            //Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[1]", 7);
+            Thread.Sleep(3000);
+           // Wait.WaitToBeClickable(driver, "XPath", "//*[text()='Skill']//ancestor::thead//following-sibling::tbody//child::span//input[1]", 9);
 
         }
 
@@ -110,15 +110,15 @@ namespace ProjectMars.Pages
         public void DeleteSkill()
         {
             skillsTab.Click();
-            Thread.Sleep(2000);
-
+        
             removeIcon.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
+            //Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[1]/tr/td[3]/span[2]/i", 9);
         }
 
         public string GetDeleteSkill()
         {
-            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='Coding has been deleted']"));
+            IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
             return actualerrorMessage.Text;
             
         }

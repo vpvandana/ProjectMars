@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow.Configuration.JsonConfig;
 using OpenQA.Selenium.DevTools.V112.Cast;
+using SeleniumExtras.WaitHelpers;
 
 namespace ProjectMars.Pages
 {
@@ -29,18 +30,18 @@ namespace ProjectMars.Pages
         private static IWebElement addedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2][last()]"));
         private static IWebElement updateIcon => driver.FindElement(By.XPath("//*[text()='Language']//ancestor::table//child::tbody[last()]//child::span[1]/i"));
         //private static IWebElement editIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[1]/i"));
-        private static  IWebElement updateButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td/div/span/input[1]"));
-        private static IWebElement editedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[1]"));
-
-        private static IWebElement editedLanguageLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[2]"));
+        private static  IWebElement updateButton => driver.FindElement(By.XPath("//input[@value='Update']"));
+        private static IWebElement editedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+        
+        private static IWebElement editedLanguageLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
         private static IWebElement chooseLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[1]"));
 
         // private  IWebElement actualerrorMessage = driver.FindElement(By.XPath("//div[text()='This language is already exist in your language list.']"));
-        private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[3]/span[2]/i"));
+        private static IWebElement removeIcon => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[3]/span[2]/i"));
 
         private static IWebElement cancelButton => driver.FindElement(By.XPath("//*[@value='Cancel']"));
-        // private static IWebElement deletedLanguage => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
-        //private static IWebElement deletedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+        private static IWebElement deletedLanguage => driver.FindElement(By.XPath("//td[1]"));
+        private static IWebElement deletedLevel => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
         public void AddLanguage(string language , string level)
         {
 
@@ -51,12 +52,10 @@ namespace ProjectMars.Pages
 
             
             addLanguageTextbox.SendKeys(language);
-            Thread.Sleep(2000);
-
+  
             languageLevelDropdown.SendKeys(level);
             languageLevelDropdown.Click();
 
-            
             addButton.Click();
             Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 7);
         }
@@ -84,17 +83,26 @@ namespace ProjectMars.Pages
 
             //Edit Language
             addLanguageTextbox.Clear();
-            Thread.Sleep(3000);
+            //Thread.Sleep(1000);
             addLanguageTextbox.SendKeys(language);
-
+            Wait.WaitToBeClickable(driver, "Name", "name", 7);
             //Edit Language level
             languageLevelDropdown.SendKeys(level);
-            Thread.Sleep(3000);
+
+            Wait.WaitToBeClickable(driver, "Name", "level", 7);
+            //Thread.Sleep(1000);
+           
+
+          //  WebDriverWait w = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+           // w.Until(ExpectedConditions.ElementToBeClickable(By.TagName("input")));
 
             //Click on Update button
             updateButton.Click();
             Thread.Sleep(3000);
-            
+           // driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1500);
+           
+             //Wait.WaitToBeClickable(driver, "XPath", "//input[@value='Update']", 12);
+
 
         }
 
@@ -119,7 +127,7 @@ namespace ProjectMars.Pages
 
             //Language field empty
             addLanguageTextbox.Clear();
-            Thread.Sleep(1000);
+           // Thread.Sleep(1000);
 
             //Level field empty
             chooseLevel.Click();
@@ -174,7 +182,7 @@ namespace ProjectMars.Pages
 
             //Thread.Sleep(1000);
             addButton.SendKeys(Keys.Enter);
-            Thread.Sleep(3000);
+            Wait.WaitToBeClickable(driver, "XPath", "//input[starts-with(@type,'button')]", 7);
 
         }
         public string GetLanguageKeyboard()
@@ -199,6 +207,7 @@ namespace ProjectMars.Pages
 
             updateButton.Click();
             Thread.Sleep(3000);
+           // Wait.WaitToBeClickable(driver, "XPath", "//input[@value='Update']", 10);
 
         }
 
@@ -222,11 +231,12 @@ namespace ProjectMars.Pages
 
            //Edit Language level
            languageLevelDropdown.SendKeys(level);
-           Thread.Sleep(1000);
+          // Thread.Sleep(1000);
 
            cancelButton.Click();
-           Thread.Sleep(1000);
-       }
+           
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@value='Cancel']", 9);
+        }
 
         public string GetNoUpdateLanguage()
         {
@@ -239,27 +249,43 @@ namespace ProjectMars.Pages
             IWebElement noEditLanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[2]"));
             return noEditLanguageLevel.Text;
         }
-        public void DeleteLanguage()
+        public void DeleteLanguage(string language,string level)
         {
+            IReadOnlyCollection<IWebElement> rows = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr"));
+            foreach (IWebElement row in rows) 
+            {
+                IWebElement languageElement = row.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[1]"));
+                IWebElement languageLevel = row.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[1]/tr/td[2]"));
+                string languageText = languageElement.Text;
+                string languageLevelText = languageLevel.Text;
+                Thread.Sleep(1000);
 
-            removeIcon .Click();
+                if(languageText.Equals(language, StringComparison.OrdinalIgnoreCase)&&languageLevelText.Equals(level,StringComparison.OrdinalIgnoreCase))
+                {
+                    removeIcon.Click();
+                    break;
+                }
+            }
+            //removeIcon .Click();
             Thread.Sleep(1000);
+          //  Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[4]/tr/td[3]/span[2]/i", 9);
             
         }
 
         public string GetDeleteLanguage()
         {
-             IWebElement deleteErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"));
-             return deleteErrorMessage.Text;
+            // IWebElement deleteErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"));
+            // return deleteErrorMessage.Text;
            
-            //return deletedLanguage.Text;
+            return deletedLanguage.Text;
         }
 
-      /*  public string GetDeletedLevel()
+        public string GetDeletedLevel()
         {
-            IWebElement deleteErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"));
-            return deleteErrorMessage.Text;
-        }*/
+            // IWebElement deleteErrorMessage = driver.FindElement(By.XPath("//div[@class='ns-box ns-growl ns-effect-jelly ns-type-success ns-show']/div"));
+            // return deleteErrorMessage.Text;
+            return deletedLevel.Text;
+        }
      
 
     }

@@ -69,8 +69,25 @@ namespace ProjectMars.StepDefinitions
             Assert.AreEqual(level, editedLanguageLevel, "The actual language and edited language does not match");
         }
 
+        [When(@"I click on cancel icon of added '([^']*)' and '([^']*)'")]
+        public void WhenIClickOnCancelIconOfAddedAnd(string language, string level)
+        {
+            languagesectionobject.DeleteLanguage(language, level);
+        }
 
-        [When(@"I click on cancel icon of added")]
+        [Then(@"Language record is deleted '([^']*)' and '([^']*)'")]
+        public void ThenLanguageRecordIsDeletedAnd(string language, string level)
+        {
+            string deletedLanguage = languagesectionobject.GetDeleteLanguage();
+            string deletedLanguageLevel = languagesectionobject.GetDeletedLevel();
+
+            Assert.AreEqual(language, deletedLanguage, "The actual language and edited language does not match");
+            Assert.AreEqual(level, deletedLanguageLevel, "The actual language and edited language does not match");
+        }
+
+
+
+       /* [When(@"I click on cancel icon of added")]
         public void WhenIClickOnCancelIconOfAdded()
         {
             languagesectionobject.DeleteLanguage();
@@ -83,7 +100,7 @@ namespace ProjectMars.StepDefinitions
             string expectedMessage = "Dutch has been deleted from your languages";
 
             Assert.AreEqual(expectedMessage, errorMessage, "Actual and expected message do not match");
-        }
+        }*/
 
         [When(@"I left language and level field empty")]
         public void WhenILeftLanguageAndLevelFieldEmpty()

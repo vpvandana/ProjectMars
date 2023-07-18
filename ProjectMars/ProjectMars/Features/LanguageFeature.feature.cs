@@ -146,10 +146,13 @@ testRunner.Then(string.Format("The record is updated\'{0}\' and \'{1}\'", langua
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TC_002_09 Click on Cancel icon")]
-        public void TC_002_09ClickOnCancelIcon()
+        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
+        public void TC_002_09ClickOnCancelIcon(string language, string level, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("language", language);
+            argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_09 Click on Cancel icon", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
@@ -165,10 +168,10 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 34
-testRunner.When("I click on cancel icon of added", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("I click on cancel icon of added \'{0}\' and \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
-testRunner.Then("Language record is deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then(string.Format("Language record is deleted \'{0}\' and \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -181,7 +184,7 @@ testRunner.Then("Language record is deleted", ((string)(null)), ((TechTalk.SpecF
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_03 Language and level field empty", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 37
+#line 41
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -191,13 +194,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 38
+#line 42
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 39
+#line 43
 testRunner.When("I left language and level field empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 40
+#line 44
 testRunner.Then("Error message language and level empty is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -214,7 +217,7 @@ testRunner.Then("Error message language and level empty is displayed", ((string)
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_04 Duplicate language and same level", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 42
+#line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -224,13 +227,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 43
+#line 47
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 44
+#line 48
 testRunner.When(string.Format("I add language and level already added \'{0}\' and \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 45
+#line 49
 testRunner.Then("Error message Language and level already exists is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -247,7 +250,7 @@ testRunner.Then("Error message Language and level already exists is displayed", 
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_05 Duplicate language with different level", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 51
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -257,13 +260,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 52
+#line 56
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 53
+#line 57
 testRunner.When(string.Format("I add language already added with different level \'{0}\',\'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 54
+#line 58
 testRunner.Then("Duplicated data message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -277,7 +280,7 @@ testRunner.Then("Duplicated data message is displayed", ((string)(null)), ((Tech
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_10 add language using keyboard keys", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 60
+#line 64
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -287,13 +290,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 61
+#line 65
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 62
+#line 66
 testRunner.When("Add Languages I know using keyboard keys", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 63
+#line 67
 testRunner.Then("language is added successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -307,7 +310,7 @@ testRunner.Then("language is added successfully", ((string)(null)), ((TechTalk.S
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_13 User clicks on update button without making changes", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 65
+#line 69
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -317,13 +320,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 66
+#line 70
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 67
+#line 71
 testRunner.When("Click on edit icon and update button without making changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 68
+#line 72
 testRunner.Then("Error message Language and level already added is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -340,7 +343,7 @@ testRunner.Then("Error message Language and level already added is displayed", (
             argumentsOfScenario.Add("language", language);
             argumentsOfScenario.Add("level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC_002_15 Updated changes are not saved on clicking cancel", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 70
+#line 74
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -350,13 +353,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 71
+#line 75
 testRunner.Given("Launch Mars and login with valid credentials", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 72
+#line 76
 testRunner.When(string.Format("Update language \'{0}\' and level \'{1}\' and click on cancel", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 73
+#line 77
 testRunner.Then(string.Format("Updated changes are not saved for \'{0}\' and \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
